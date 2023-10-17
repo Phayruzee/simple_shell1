@@ -7,7 +7,7 @@
  *
  */
 
-int main(void)
+int betty_main(void)
 {
 	printf("Hello, Betty!, i can perfeectly beat your problem now\n");
 	return (0);
