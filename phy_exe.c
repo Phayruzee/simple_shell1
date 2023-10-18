@@ -12,12 +12,26 @@ void chief_command(const char *bars)
 	}
 	else if (child_pid == 0)
 	{
-		/* child process id. */
-		execlp(bars, bars, (char *)NULL);
-		perror("execlp");
+		char *args[140]; /* Array to store the command and its arguments */
+		int counter_arg = 0; /* Counter for the number of arguments */
+		
+		/* Tokenize the input string to extract the command and its arguments */
+		char *token = strtok((char *)bars, " ");
+		while (token != NULL)
+		{
+			args[counter_arg++] = token;
+			token = strtok(NULL, " ");
+		}
+		args[counter_arg] = NULL; /* Null-terminate the args array */
+		
+		/* Execute the command */
+		execvp(args[0], args);
+
+		/** if execvp fails print an error message.*/
+		fm_print("Problem encounter while executing Bars.\n");
 		exit(EXIT_FAILURE);
 	}
-	else 
+	else
 	{
 		/* parent process */
 		wait(NULL);
