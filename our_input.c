@@ -1,10 +1,11 @@
-/* this is a function that recives the users input*/
+/* this is a function that receives the users input */
 #include "shell.h"
 
-
 void command_reader(char *bars, size_t size)
+	/* space added before the parenthesis*/
 {
-	if(fgets(bars, size, stdin) == NULL)
+	if (fgets(bars, size, stdin) == NULL)
+		/* removed extra space*/
 	{
 		if (feof(stdin))
 		{
@@ -13,10 +14,12 @@ void command_reader(char *bars, size_t size)
 		}
 		else
 		{
-			fm_print("problem while processing input. \n");
+			fm_print("problem while processing input.\n");
+			/* removed trailing whitespace*/
 			exit(EXIT_FAILURE);
 		}
 	}
 	bars[strcspn(bars, "\n")] = '\0';
-	/* remove newline in the string */
+    /* remove newline in the string */
 }
+
